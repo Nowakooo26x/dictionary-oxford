@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dictionary-oxford/static/css/main.81ecc118.css",
+    "main.js": "/dictionary-oxford/static/js/main.38415629.js",
+    "index.html": "/dictionary-oxford/index.html",
+    "main.81ecc118.css.map": "/dictionary-oxford/static/css/main.81ecc118.css.map",
+    "main.38415629.js.map": "/dictionary-oxford/static/js/main.38415629.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.81ecc118.css",
+    "static/js/main.38415629.js"
+  ]
+}
