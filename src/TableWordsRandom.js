@@ -1,5 +1,8 @@
-import string from './dictionary.json'
+import dictionary from './dictionary.json'
 import variables from './variables.json'
+
+
+import Layout from './components/organisms/Layout';
 
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
@@ -35,9 +38,9 @@ function TableWordsRandom() {
       let obj = []
         let array = []
         for(let i = 0; i<15; i++){
-            let random = Math.floor(Math.random()*string.length+0)
+            let random = Math.floor(Math.random()*dictionary.length+0)
             array.push(random)
-            obj.push(string[random])
+            obj.push(dictionary[random])
 
             setObjWords(obj)
         }
@@ -45,8 +48,7 @@ function TableWordsRandom() {
     
 
   return (
-    <div>
-      
+    <Layout>
       <Stack>
         <Typography variant="h6" component="h1">Random 15 words</Typography>
         <Button onClick={handleClick} variant="outlined">Generate words</Button>
@@ -71,7 +73,6 @@ function TableWordsRandom() {
               <TableCell > 
               <Chip
                   label={visible? row.polish : "translate"}
-                  onClick={()=>{}}
                   onDelete={()=>{setVisible(!visible)}}
                   onClick={()=>{setVisible(!visible)}}
                   deleteIcon={visible? <VisibilityOffIcon /> : <VisibilityIcon/>}
@@ -98,7 +99,7 @@ function TableWordsRandom() {
         </TableBody>
       </Table>
     </TableContainer>
-    </div>
+    </Layout>
   );
 }
 
