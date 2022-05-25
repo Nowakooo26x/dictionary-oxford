@@ -63,7 +63,7 @@ function TableComponent( { rows }) {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.url_definition}>
                       <TableCell>
                       <a  href={`${variables.ServerOxford}${row.url_definition}`} target="_blank" rel="noreferrer">{row.english}</a>
                       </TableCell>
