@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+
+import { addVisible, removeVisible } from '../../redux/features/dictionary/dictionarySlice'
 
 import variables from '../../variables.json'
 
@@ -18,16 +21,19 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 
 function TableComponent( { rows }) {
 
+  //
+  const dispatch = useDispatch()
+  const visibleList = useSelector((state) => state.dictionary.visibleList)
+
   const columns = [
     { id: '0', label: 'English', minWidth: 120, align: "left" },
     { id: '1', label: 'Type', minWidth: 120, align: "left" },
-    { id: '2', label: 'Polish', minWidth: 120, align: "left" },
+    { id: '2', label: 'Polish', minWidth: 300, align: "left" },
     { id: '3', label: 'AudioUS', minWidth: 120, align: "right" },
     { id: '4', label: 'AudioGB', minWidth: 120, align: "right"},
     { id: '5', label: 'Level', minWidth: 100, align: "right"}
   ]
 
-  const [visible, setVisible] = useState(false);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(15);
 
@@ -38,6 +44,20 @@ function TableComponent( { rows }) {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+
+
+  const isVisible = (array, id) => {
+    let bool = array.some((item) => item === id)
+    return bool
+  };
+
+  const handleClickTranslate = (array, id) => {
+    if(isVisible(array, id) === false){
+      dispatch(addVisible(id))
+    }else{
+      dispatch(removeVisible(id))
+    }
   };
 
     return ( 
@@ -51,9 +71,9 @@ function TableComponent( { rows }) {
                   <TableCell
                     key={column.id}
                     align={column.align}
-                    style={{ minWidth: column.minWidth }}
+                    style={{ minWidth: column.minWidth, maxWidth: column.minWidth }}
                   >
-                    <b>{column.label}</b>
+                      <b>{column.label}</b>
                   </TableCell>
                 ))}
               </TableRow>
@@ -63,19 +83,23 @@ function TableComponent( { rows }) {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.url_definition}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                       <TableCell>
-                      <a  href={`${variables.ServerOxford}${row.url_definition}`} target="_blank" rel="noreferrer">{row.english}</a>
+                      <a  href={`${variables.ServerOxford}${row.id}`} target="_blank" rel="noreferrer">{row.english}</a>
                       </TableCell>
                       <TableCell>
                         {row.type}
                       </TableCell>
                       <TableCell>
                         <Chip
-                          label={visible? row.polish : "translate"}
-                          onDelete={()=>{setVisible(!visible)}}
-                          onClick={()=>{setVisible(!visible)}}
-                          deleteIcon={visible? <VisibilityOffIcon /> : <VisibilityIcon/>}
+                          label={isVisible(visibleList, row.id)? row.polish : "translate"}
+                          onDelete={()=>{
+                            handleClickTranslate(visibleList, row.id)
+                          }}
+                          onClick={()=>{
+                            handleClickTranslate(visibleList, row.id)
+                          }}
+                          deleteIcon={isVisible(visibleList, row.id)? <VisibilityOffIcon /> : <VisibilityIcon/>}
                           variant="outlined"
                         />
                       </TableCell>
