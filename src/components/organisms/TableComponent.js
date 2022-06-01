@@ -85,7 +85,7 @@ function TableComponent( { rows }) {
                   return (
                     <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                       <TableCell>
-                      <a  href={`${variables.ServerOxford}${row.id}`} target="_blank" rel="noreferrer">{row.english}</a>
+                      <a  href={`${variables.ServerOxford}${row.url_definition}`} target="_blank" rel="noreferrer">{row.english}</a>
                       </TableCell>
                       <TableCell>
                         {row.type}
