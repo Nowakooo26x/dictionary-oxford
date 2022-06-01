@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/dictionary-oxford/static/css/main.81ecc118.css",
-    "main.js": "/dictionary-oxford/static/js/main.77a1e9a3.js",
+    "main.js": "/dictionary-oxford/static/js/main.931e4776.js",
     "index.html": "/dictionary-oxford/index.html",
     "main.81ecc118.css.map": "/dictionary-oxford/static/css/main.81ecc118.css.map",
-    "main.77a1e9a3.js.map": "/dictionary-oxford/static/js/main.77a1e9a3.js.map"
+    "main.931e4776.js.map": "/dictionary-oxford/static/js/main.931e4776.js.map"
   },
   "entrypoints": [
     "static/css/main.81ecc118.css",
-    "static/js/main.77a1e9a3.js"
+    "static/js/main.931e4776.js"
   ]
 }
